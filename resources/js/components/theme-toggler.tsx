@@ -1,23 +1,16 @@
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Theme, useTheme } from "@/components/theme-provider";
-import { useEffect } from "react";
+} from "@/components/ui/dropdown-menu"
+import { useTheme } from "@/components/theme-provider"
 
-export function ThemeToggler({ defaultTheme = "system" }: { defaultTheme?: Theme }) {
-    const { setTheme } = useTheme();
-
-    useEffect(() => {
-        if (defaultTheme) {
-            setTheme(defaultTheme);
-        }
-    }, [defaultTheme, setTheme]);
+export function ThemeToggler() {
+    const { setTheme } = useTheme()
 
     return (
         <DropdownMenu>

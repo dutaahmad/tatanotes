@@ -11,6 +11,8 @@ class Note extends Model {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, SoftDeletes;
 
+    protected $table = 'note';
+
     protected $fillable = [
         "user_id",
         "title",

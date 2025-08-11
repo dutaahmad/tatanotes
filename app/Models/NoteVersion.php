@@ -10,6 +10,8 @@ class NoteVersion extends Model
 {
     use SoftDeletes, HasFactory;
 
+    protected $table = 'note_version';
+
     protected $fillable = [
         "note_id",
         "user_id",

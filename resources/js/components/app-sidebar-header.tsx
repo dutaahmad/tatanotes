@@ -24,7 +24,7 @@ export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: Breadcrum
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
             <div>
-                <ThemeToggler defaultTheme='dark' />
+                <ThemeToggler />
             </div>
         </header>
     );

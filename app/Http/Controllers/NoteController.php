@@ -21,7 +21,7 @@ class NoteController extends Controller
             ->notes()
             ->latest()
             ->get()
-            ->map(fn($note) => [
+            ->map(callback: fn($note) => [
                 "id" => $note->id,
                 "title" => $note->title,
                 "content" => $note->content,
@@ -52,7 +52,7 @@ class NoteController extends Controller
 
     public function edit(Request $request, Note $note)
     {
-        $request->authorize('update', $note);
+        $this->authorize('update', $note);
 
         return Inertia::render('note/edit', [
             'note' => $note
@@ -61,7 +61,7 @@ class NoteController extends Controller
 
     public function update(Request $request, Note $note)
     {
-        $request->authorize('update', $note);
+        $this->authorize('update', $note);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -75,7 +75,7 @@ class NoteController extends Controller
 
     public function destroy(Note $note, Request $request)
     {
-        $request->authorize('delete', $note);
+        $this->authorize('delete', $note);
 
         $note->delete();
 
