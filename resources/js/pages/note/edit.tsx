@@ -5,8 +5,9 @@ import InputError from '@/components/input-error';
 import { breadcrumbs } from '@/constants';
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useRef } from 'react';
 import TiptapEditor from '@/components/tiptap-editor';
+import { SimpleAlertDialog } from '@/components/simple-alert-dialog';
 
 interface Note {
     id: number;
@@ -20,10 +21,16 @@ export default function NoteEdit({ note }: { note: Note }) {
         content: note.content,
     });
 
+    const editorRef = useRef<any>(null);
+
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         put(route('notes.update', note.id));
     };
+
+    const resetContent = () => {
+        reset();
+    }
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -35,13 +42,14 @@ export default function NoteEdit({ note }: { note: Note }) {
                             <Link href={route('notes.index')}>
                                 <Button type="button" variant="outline">Cancel</Button>
                             </Link>
-                            <Button
-                                type="button"
-                                onClick={() => reset()}
-                                variant="outline"
-                            >
-                                Reset
-                            </Button>
+                            <SimpleAlertDialog
+                                title="Are you sure?"
+                                description="This will reset your note content to the latest saved version."
+                                onConfirm={resetContent}
+                                trigger="Reset"
+                                cancelText="Cancel"
+                                confirmText="Yes"
+                            />
                             <Button type="submit" disabled={processing}>
                                 Update Note
                             </Button>
@@ -66,6 +74,7 @@ export default function NoteEdit({ note }: { note: Note }) {
                                 value={data.content}
                                 onChange={(val) => setData('content', val)}
                                 placeholder="Start writing your note..."
+                                ref={editorRef}
                             />
                             <InputError message={errors.content} className="mt-2" />
                         </div>

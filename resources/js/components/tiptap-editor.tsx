@@ -3,7 +3,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import { Button } from './ui/button';
 import { Bold, Heading, Italic } from 'lucide-react';
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle, useEffect } from 'react';
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -74,6 +74,14 @@ export const TiptapEditor = forwardRef(({ value, onChange, placeholder }: Tiptap
       
     },
   });
+
+  // Update editor content when the value prop changes
+  useEffect(() => {
+    if (editor && editor.getHTML() !== value) {
+      // @ts-expect-error false is detected as an invalid argument
+      editor.commands.setContent(value, false);
+    }
+  }, [value, editor]);
 
   useImperativeHandle(ref, () => ({
     reset: () => editor?.chain().clearContent(true).unsetAllMarks().clearNodes().run()

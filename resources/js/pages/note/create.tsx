@@ -5,8 +5,9 @@ import InputError from '@/components/input-error';
 import { breadcrumbs } from '@/constants';
 import AppLayout from '@/layouts/app-layout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import { FormEventHandler, useEffect, useRef } from 'react';
+import { FormEventHandler, useRef } from 'react';
 import TiptapEditor from '@/components/tiptap-editor';
+import { SimpleAlertDialog } from '@/components/simple-alert-dialog';
 
 export default function NoteCreate() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -19,11 +20,12 @@ export default function NoteCreate() {
         post(route('notes.store'));
     };
 
-    const editorRef = useRef<any>(null);
+    const resetContent = () => {
+        reset();
+        editorRef.current?.reset();
+    };
 
-    useEffect(() => {
-        console.log({ data })
-    }, [data]);
+    const editorRef = useRef<any>(null);
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
@@ -35,7 +37,7 @@ export default function NoteCreate() {
                             <Link href={route('notes.index')}>
                                 <Button type="button" variant="outline">Cancel</Button>
                             </Link>
-                            <Button
+                            {/* <Button
                                 type="button"
                                 onClick={() => {
                                     reset();
@@ -44,7 +46,15 @@ export default function NoteCreate() {
                                 variant="outline"
                             >
                                 Reset
-                            </Button>
+                            </Button> */}
+                            <SimpleAlertDialog
+                                title="Are you sure?"
+                                description="This will delete all your note content."
+                                onConfirm={resetContent}
+                                trigger="Reset"
+                                cancelText="Cancel"
+                                confirmText="Yes"
+                            />
                             <Button type="submit" disabled={processing}>
                                 Create Note
                             </Button>
