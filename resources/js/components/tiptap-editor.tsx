@@ -84,7 +84,7 @@ export const TiptapEditor = forwardRef(({ value, onChange, placeholder }: Tiptap
   }
 
   return (
-    <div className='flex flex-col flex-1 space-y-4 max-w-5xl mx-auto w-full '>
+    <div className='flex flex-col flex-1 space-y-4 mx-auto w-full '>
       <div className="flex gap-2 mb-2 w-full p-2">
         <Button
           type="button"

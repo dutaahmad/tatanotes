@@ -28,9 +28,9 @@ export default function NoteCreate() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Create Note" />
-            <div className="flex h-[88vh] rounded-md m-4 overflow-hidden">
-                <main className="flex-1 bg-secondary rounded-md p-6 overflow-y-hidden h-9/10">
-                    <form onSubmit={submit} className="space-y-4 max-w-3xl mx-auto h-full">
+            <div className="flex h-[90vh]  rounded-md m-4 overflow-hidden w-full">
+                <main className="flex-1 bg-secondary rounded-md p-6 overflow-y-hidden h-98/100">
+                    <form onSubmit={submit} className="space-y-4 w-full max-w-5xl mx-auto h-full">
                         <div className="flex items-center justify-end gap-4">
                             <Link href={route('notes.index')}>
                                 <Button type="button" variant="outline">Cancel</Button>
@@ -64,7 +64,7 @@ export default function NoteCreate() {
                             />
                             <InputError message={errors.title} className="mt-2" />
                         </div>
-                        <div className='flex flex-col flex-1 space-y-4 max-w-5xl mx-auto w-full h-[80%] overflow-auto border-4 border-primary/20'>
+                        <div className='flex flex-col flex-1 space-y-4 mx-auto w-full h-[80%] overflow-auto border-4 border-primary/20'>
                             <TiptapEditor
                                 value={data.content}
                                 onChange={(val) => setData('content', val)}
