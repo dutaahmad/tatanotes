@@ -4,9 +4,11 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { AppSidebarHeader } from '@/components/app-sidebar-header';
 import { type BreadcrumbItem } from '@/types';
 import { type PropsWithChildren, useState, useEffect } from 'react';
+import { usePage } from '@inertiajs/react';
 
 export default function AppSidebarLayout({ children, breadcrumbs = [] }: PropsWithChildren<{ breadcrumbs?: BreadcrumbItem[] }>) {
     const [transitioning, setTransitioning] = useState(false);
+    const { url } = usePage();
 
     useEffect(() => {
         setTransitioning(true); // Start fade-in when component mounts or children change
@@ -15,7 +17,7 @@ export default function AppSidebarLayout({ children, breadcrumbs = [] }: PropsWi
         }, 100); // Adjust duration as needed
 
         return () => clearTimeout(timer);
-    }, [children]); // Re-run effect when children (page content) changes
+    }, [url]); // Re-run effect when URL changes
 
     return (
         <AppShell variant="sidebar">
