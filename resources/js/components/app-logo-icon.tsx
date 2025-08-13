@@ -1,13 +1,71 @@
-import { SVGAttributes } from 'react';
+import { memo, SVGAttributes } from 'react';
 
-export default function AppLogoIcon(props: SVGAttributes<SVGElement>) {
+function AppLogoIcon(props: SVGAttributes<SVGElement>) {
     return (
-        <svg {...props} viewBox="0 0 40 42" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M17.2 5.63325L8.6 0.855469L0 5.63325V32.1434L16.2 41.1434L32.4 32.1434V23.699L40 19.4767V9.85547L31.4 5.07769L22.8 9.85547V18.2999L17.2 21.411V5.63325ZM38 18.2999L32.4 21.411V15.2545L38 12.1434V18.2999ZM36.9409 10.4439L31.4 13.5221L25.8591 10.4439L31.4 7.36561L36.9409 10.4439ZM24.8 18.2999V12.1434L30.4 15.2545V21.411L24.8 18.2999ZM23.8 20.0323L29.3409 23.1105L16.2 30.411L10.6591 27.3328L23.8 20.0323ZM7.6 27.9212L15.2 32.1434V38.2999L2 30.9666V7.92116L7.6 11.0323V27.9212ZM8.6 9.29991L3.05913 6.22165L8.6 3.14339L14.1409 6.22165L8.6 9.29991ZM30.4 24.8101L17.2 32.1434V38.2999L30.4 30.9666V24.8101ZM9.6 11.0323L15.2 7.92117V22.5221L9.6 25.6333V11.0323Z"
-            />
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1080"
+            height="1080"
+            fill="none"
+            viewBox="0 0 1080 1080"
+            {...props}
+        >
+            <g clipPath="url(#a)">
+                <circle cx="540" cy="540" r="540" fill="#000"></circle>
+                <g fill="#D9D9D9" filter="url(#b)">
+                    <path d="M477.664 289.75H157.376s-5.346 26.048 0 41.378c7.559 21.679 43.282 41.378 43.282 41.378H391.1v610.122l86.565 31.232-.001-645.492h56.267zM590.198 513.19l86.565 111.72v357.718L590.198 1018zM823.923 277.344C953.769 430.443 906.88 571.816 875.861 639.4v-.007L706.176 368.368h.884l-7.065-9.871-1.591-2.542-.211.024-47.4-66.229H533.932l56.266 78.618 19.477 10.344L875.02 793.994l.841 2.642.526-.503 1.638 2.565-.055-4.101c73.51-71.964 178.69-262.756 75.799-475.875C849.892 103.558 626.267 58.732 533.931 62.18l-51.648 86.408q-.23.243-.29.485l.29-.485c9.057-9.632 213.95-21.799 341.64 128.756"></path>
+                </g>
+            </g>
+            <defs>
+                <clipPath id="a">
+                    <path fill="#fff" d="M0 0h1080v1080H0z"></path>
+                </clipPath>
+                <filter
+                    id="b"
+                    width="865.665"
+                    height="970"
+                    x="155"
+                    y="62"
+                    colorInterpolationFilters="sRGB"
+                    filterUnits="userSpaceOnUse"
+                >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        result="hardAlpha"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    ></feColorMatrix>
+                    <feOffset dx="20" dy="10"></feOffset>
+                    <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+                    <feComposite in2="hardAlpha" operator="out"></feComposite>
+                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"></feColorMatrix>
+                    <feBlend
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow_2001_3"
+                    ></feBlend>
+                    <feBlend
+                        in="SourceGraphic"
+                        in2="effect1_dropShadow_2001_3"
+                        result="shape"
+                    ></feBlend>
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        result="hardAlpha"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    ></feColorMatrix>
+                    <feOffset dx="10" dy="8"></feOffset>
+                    <feComposite
+                        in2="hardAlpha"
+                        k2="-1"
+                        k3="1"
+                        operator="arithmetic"
+                    ></feComposite>
+                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 0"></feColorMatrix>
+                    <feBlend in2="shape" result="effect2_innerShadow_2001_3"></feBlend>
+                </filter>
+            </defs>
         </svg>
     );
 }
+
+export default memo(AppLogoIcon);
